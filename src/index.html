@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Music Site</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/greghub/green-audio-player/dist/css/green-audio-player.min.css">
+</head>
+<body>
+  <header class="splash">
+    <div class="splash-inner">
+      <h1 class="splash-title">TASTE</h1>
+      <h2 class="splash-subtitle">Engage in Art</h2>
+    </div>
+  </header>
+  <nav class="main-nav">
+    <a href="#home">HOME</a>
+    <a href="#search">SEARCH</a>
+    <a href="#discover">DISCOVER</a>
+  </nav>
+  <div id="pages">
+    <section id="home" class="home active">
+      <div class="container">
+        <div id="home-song" class="songs">
+          <div class="player">
+            <audio>
+                <source src="songs/At_The_Top_David_Renda.mp3" type="audio/mpeg">
+            </audio>
+        </div>
+        <div class="player">
+          <h3>{{title}}</h3>
+          <audio>
+              <source src="songs/{{{filename}}}" type="audio/mpeg">
+          </audio>
+          <div>
+            <div class="categories">
+              {{foreach categories}}
+            </div>
+            <div>Ranging: {{{ranking}}}</div>
+          </div>
+      </div>
+        </div>
+      </div>
+      <div class="subscribe">
+
+      </div>
+    </section>
+    <section id="search" class="search">
+      <div class="container">
+        <div class="search-bar">
+          <h3 class="search-title">SEARCH</h3>
+          <div class="search-bar">
+            <div class="search-name">Name</div>
+            <input type="text">
+            <div class="btn btn-search">Search</div>
+          </div>
+        </div>
+        <div class="search-message"></div>
+        <div id="search-songs" class="songs">
+
+        </div>
+      </div>
+    </section>
+    <section id="discover" class="discover">
+      <div class="container">
+        <h3 class="discover-title">Discover</h3>
+        <p class="discover-subtitle">Give it a try!</p>
+      </div>
+    </section>
+  </div>
+  <footer class="footer container">
+    <p>All rights reserved</p>
+
+  </footer>
+  <script src="https://cdn.jsdelivr.net/gh/greghub/green-audio-player/dist/js/green-audio-player.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.0/handlebars.min.js"></script>
+  <script src="js/app.js" type="module"></script>
+</body>
+</html>
