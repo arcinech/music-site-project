@@ -1,13 +1,16 @@
-class Songs{
-  constructor(authors, song) {
-    const thisSong = this;
-    this.data = {};
-    //this.author is reference to autor in autor db with id from songs db.author
-    this.data.author = authors[song.author.id].author;
-    this.data.song = song.title;
-    this.data.filename = song.title;
+import { templates } from '../settings.js';
 
-    console.log(thisSong.data);
+class Songs{
+  constructor(data, element) {
+    this.data = data;
+    this.renderSong(element);
+  }
+
+  renderSong(element){
+
+    const generetedHTML = templates.musicPlayer(this.data);
+
+    element.innerHTML = element.innerHTML + generetedHTML;
   }
 
 }
