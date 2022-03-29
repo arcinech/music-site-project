@@ -1,26 +1,8 @@
 import { settings, select, classNames } from './settings.js';
 import Home from './components/home.js';
-import Songs from './components/Songs.js';
+import Discovery from './components/Discovery.js';
 
 const app = {
-  initData: function(){
-    const thisApp = this;
-    thisApp.data = {};
-
-    const url = settings.db.url + '/' + settings.db.songs;
-
-    fetch(url)
-      .then(function(rawResponse){
-        return rawResponse.json();
-      })
-      .then(function(songs){
-        console.log(thisApp);
-        thisApp.data.songs = songs;
-
-        thisApp.initHome(thisApp.data.songs);
-        thisApp.initSearch(thisApp.data)
-      });
-  },
   initPages: function(){
     const thisApp = this;
 
@@ -54,6 +36,50 @@ const app = {
     }
 
   },
+  initData: function(){
+    const thisApp = this;
+    thisApp.songData = {};
+    thisApp.authorData = {};
+
+    const urls = {
+      songs:    settings.db.url + '/' + settings.db.songs,
+      authors:  settings.db.url + '/' + settings.db.authors
+    };
+
+    Promise.all([
+      fetch(urls.songs),
+      fetch(urls.authors),
+    ])
+      .then(function(allResponses){
+        const songResponses = allResponses[0];
+        const authorsResponses = allResponses[1];
+        return Promise.all([
+          songResponses.json(),
+          authorsResponses.json(),
+        ]);
+      })
+      .then(function(responses){
+        console.log(responses);
+        thisApp.songData.songs = responses[0];
+        thisApp.authorData.authors = responses[1];
+
+        thisApp.initHome();
+        thisApp.initDiscovery();
+      });
+
+    // fetch(url)
+    //   .then(function(rawResponse){
+    //     return rawResponse.json();
+    //   })
+    //   .then(function(songs){
+    //     console.log(thisApp);
+    //     thisApp.data.songs = songs;
+
+    //     thisApp.initHome(thisApp.data.songs);
+    //     // thisApp.initSearch(thisApp.data);
+    //   });
+  },
+
   activatePage: function(pageId){
     const thisApp = this;
 
@@ -73,24 +99,11 @@ const app = {
   },
 
   initHome: function(){
-    const thisApp = this;
-
-    for(let songData in thisApp.data.songs){
-      new Songs(thisApp.data.songs[songData].id, thisApp.data.songs[songData]);
-    }
+    new Home(this.songData.songs, this.authorData.authors);
   },
 
-  initPlugin: function(){
-    // eslint-disable-next-line no-undef
-    GreenAudioPlayer.init({
-      selector: '.player', // inits Green Audio Player on each audio container that has class "player"
-      stopOthersOnPlay: true
-    });
-  },
-
-  initSearch: function(){
-    const searchWrapper = document.querySelector(select.containerOf.search);
-    new Search(searchWrapper);
+  initDiscovery: function(){
+    new Discovery(this.songData.songs, this.authorData.authors);
   },
 
   init: function(){
@@ -98,7 +111,7 @@ const app = {
 
     thisApp.initData();
     thisApp.initPages();
-    thisApp.initPlugin();
+
   }
 };
 
