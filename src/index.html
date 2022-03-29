@@ -27,25 +27,11 @@
     <section id="home">
       <div id="home-page" class="home-page container"></div>
     </section>
-    <section id="search" class="search">
-      <div class="container">
-        <div class="search-bar">
-          <h3 class="search-title">SEARCH</h3>
-          <div class="search-bar">
-            <div class="search-name">Name</div>
-            <input type="text">
-            <div class="btn btn-search">Search</div>
-          </div>
-        </div>
-        <div class="search-message"></div>
-        <div id="search-songs" class="songs">
-
-        </div>
-      </div>
+    <section id="search">
+      <div id="search-page" class="search container"></div>
     </section>
     <section id="discover">
-      <div if="discover" class="container discover">
-      </div>
+      <div id="discover" class="container discover"></div>
     </section>
   </div>
   <footer class="footer container">
@@ -54,17 +40,17 @@
   </footer>
 
   <script id="template-music-player" type="text/x-handlebars-template">
-    <div class="player">
-      <h3>{{ title }}</h3>
-      <audio>
+    <div class="player-box">
+      <h3>{{ author }} - {{ title }}</h3>
+      <div class="player">
+        <audio>
           <source src="songs/{{{filename}}}" type="audio/mpeg">
-      </audio>
+        </audio>
+      </div>
       <div>
         <div class="categories">
           <p>
-            {{#each categories}}
-              {{{this}}}
-            {{/each}}
+            Categories: "{{#each categories}} {{{this}}} {{/each}}"
           </p>
         </div>
         <div>Ranking: {{{ranking}}}</div>
@@ -82,9 +68,22 @@
   <script id="template-discover-page" type="text/x-handlebars-template">
     <h3 class="discover-title">Discover</h3>
     <p class="discover-subtitle">Give it a try!</p>
-    <div id="random-song" class="discover-song"></div>
+    <div id="random-song" class="songs"></div>
   </script>
+  <script id="template-search-page" type="text/x-handlebars-template">
+    <div class="search-bar">
+      <h3 class="search-title">SEARCH</h3>
+      <div class="search-bar">
+        <div class="search-name">Name</div>
+        <input type="text">
+        <div class="btn btn-search">Search</div>
+      </div>
+    </div>
+    <div class="search-message"></div>
+    <div id="search-songs" class="songs">
 
+    </div>
+  </script>
   <script src="https://cdn.jsdelivr.net/gh/greghub/green-audio-player/dist/js/green-audio-player.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.0/handlebars.min.js"></script>
   <script src="js/app.js" type="module"></script>
