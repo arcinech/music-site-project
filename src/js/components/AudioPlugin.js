@@ -1,12 +1,12 @@
 class AudioPlugin{
-  constructor(){
-    this.initPlugin();
+  constructor(element){
+    this.initPlugin(element);
   }
 
-  initPlugin(){
+  initPlugin(element){
     // eslint-disable-next-line no-undef
     GreenAudioPlayer.init({
-      selector: '.player', // inits Green Audio Player on each audio container that has class "player"
+      selector: element, // inits Green Audio Player on each audio container that has class "element"
       stopOthersOnPlay: true
     });
   }
