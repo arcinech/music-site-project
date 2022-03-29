@@ -18,8 +18,8 @@ const app = {
         thisApp.data.songs = songs;
 
         thisApp.initHome(thisApp.data.songs);
+        thisApp.initSearch(thisApp.data)
       });
-    return thisApp.data;
   },
   initPages: function(){
     const thisApp = this;
@@ -86,6 +86,11 @@ const app = {
       selector: '.player', // inits Green Audio Player on each audio container that has class "player"
       stopOthersOnPlay: true
     });
+  },
+
+  initSearch: function(){
+    const searchWrapper = document.querySelector(select.containerOf.search);
+    new Search(searchWrapper);
   },
 
   init: function(){

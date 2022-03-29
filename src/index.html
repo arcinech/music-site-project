@@ -24,31 +24,8 @@
     <a href="#discover">DISCOVER</a>
   </nav>
   <div id="pages">
-    <section id="home" class="home active">
-      <div class="container">
-        <div id="home-song" class="songs">
-          <div class="player">
-            <audio>
-                <source src="songs/At_The_Top_David_Renda.mp3" type="audio/mpeg">
-            </audio>
-        </div>
-        <div class="player">
-          <h3>{{title}}</h3>
-          <audio>
-              <source src="songs/{{{filename}}}" type="audio/mpeg">
-          </audio>
-          <div>
-            <div class="categories">
-              {{foreach categories}}
-            </div>
-            <div>Ranging: {{{ranking}}}</div>
-          </div>
-      </div>
-        </div>
-      </div>
-      <div class="subscribe">
-
-      </div>
+    <section id="home">
+      <div id="home-page" class="home-page container"></div>
     </section>
     <section id="search" class="search">
       <div class="container">
@@ -66,10 +43,8 @@
         </div>
       </div>
     </section>
-    <section id="discover" class="discover">
-      <div class="container">
-        <h3 class="discover-title">Discover</h3>
-        <p class="discover-subtitle">Give it a try!</p>
+    <section id="discover">
+      <div if="discover" class="container discover">
       </div>
     </section>
   </div>
@@ -77,6 +52,39 @@
     <p>All rights reserved</p>
 
   </footer>
+
+  <script id="template-music-player" type="text/x-handlebars-template">
+    <div class="player">
+      <h3>{{ title }}</h3>
+      <audio>
+          <source src="songs/{{{filename}}}" type="audio/mpeg">
+      </audio>
+      <div>
+        <div class="categories">
+          <p>
+            {{#each categories}}
+              {{{this}}}
+            {{/each}}
+          </p>
+        </div>
+        <div>Ranking: {{{ranking}}}</div>
+      </div>
+    </div>
+  </script>
+
+  <script id="template-home-page" type="text/x-handlebars-template">
+    <div id="home-song" class="songs"></div>
+    <div class="subscribe">
+
+    </div>
+  </script>
+
+  <script id="template-discover-page" type="text/x-handlebars-template">
+    <h3 class="discover-title">Discover</h3>
+    <p class="discover-subtitle">Give it a try!</p>
+    <div id="random-song" class="discover-song"></div>
+  </script>
+
   <script src="https://cdn.jsdelivr.net/gh/greghub/green-audio-player/dist/js/green-audio-player.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.0/handlebars.min.js"></script>
   <script src="js/app.js" type="module"></script>

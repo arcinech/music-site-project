@@ -32,5 +32,19 @@
             "categories": ["Powerful", "Insomnia"],
             "ranking": 3
         }
+    ],
+    "authors": [
+      {
+        "id": 1,
+        "author": "John Doe"
+      },
+      {
+        "id": 2,
+        "author": "Jane Doe"
+      },
+      {
+        "id": 3,
+        "author": "Snoopy Doe"
+      }
     ]
 }
