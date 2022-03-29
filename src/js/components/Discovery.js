@@ -1,33 +1,34 @@
-
-import {select} from '../settings.js';
+import {select, templates} from '../settings.js';
+import {utils} from '../utils.js';
+import Songs from './Songs.js';
+import AudioPlugin from './AudioPlugin.js';
 class Discovery{
-  constructor(data, element) {
-    this.data = data;
+  constructor(songs, authors) {
+    this.songs = songs;
+    this.authors = authors;
+    this.renderPage();
+    this.renderRandomSong(this.songs, this.authors);
 
+    new AudioPlugin(select.discovery.initPlugin);
   }
 
-  renderSongs(data){
-
-  }
-
-  filterSongs(searchText, data){
-
-    for(let song of data){
-      if(song.title.includes(searchText)){
-        this.renderSongs(data);
-      }
-    }
-  }
-  initSearch(){
-
-  }
-
-  getElements(element){
-
+  renderPage(){
     this.dom = {};
-
-    this.dom.wrapper = element;
-    this.dom.input = this.dom.wrapper.querySelector(select.search.input);
-    this.dom.button = this.dom.wrapper.querySelector(select.search.searchButton);
+    this.dom.wrapper = document.querySelector(select.containerOf.discovery);
+    console.log(this.dom.wrapper);
+    const generetedHTML = templates.discoveryPage();
+    this.dom.wrapper.innerHTML = generetedHTML;
+    this.dom.song = this.dom.wrapper.querySelector(select.all.songsWrapper);
   }
+
+  renderRandomSong(songs, authors){
+    const randomSong = Math.floor(Math.random()*(this.songs.length + 1));
+
+    this.data = utils.songData(songs[randomSong], authors);
+
+    new Songs(this.data, this.dom.song);
+  }
+
 }
+
+export default Discovery;
