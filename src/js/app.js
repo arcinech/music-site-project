@@ -1,6 +1,7 @@
 import { settings, select, classNames } from './settings.js';
 import Home from './components/home.js';
 import Discovery from './components/Discovery.js';
+import Search from './components/Search.js';
 
 const app = {
   initPages: function(){
@@ -10,7 +11,7 @@ const app = {
     thisApp.navLinks = document.querySelectorAll(select.nav.links);
 
     const idFromHash = window.location.hash.replace('#/', '');
-    console.log(idFromHash);
+    // console.log(idFromHash);
 
     let pageMatchingHash = thisApp.pages[0].id;
 
@@ -58,26 +59,14 @@ const app = {
           authorsResponses.json(),
         ]);
       })
-      .then(function(responses){
-        console.log(responses);
-        thisApp.songData.songs = responses[0];
-        thisApp.authorData.authors = responses[1];
+      .then(function([songs, authors]){
+        thisApp.songs = songs;
+        thisApp.authors = authors;
 
         thisApp.initHome();
         thisApp.initDiscovery();
+        thisApp.initSearch();
       });
-
-    // fetch(url)
-    //   .then(function(rawResponse){
-    //     return rawResponse.json();
-    //   })
-    //   .then(function(songs){
-    //     console.log(thisApp);
-    //     thisApp.data.songs = songs;
-
-    //     thisApp.initHome(thisApp.data.songs);
-    //     // thisApp.initSearch(thisApp.data);
-    //   });
   },
 
   activatePage: function(pageId){
@@ -99,11 +88,15 @@ const app = {
   },
 
   initHome: function(){
-    new Home(this.songData.songs, this.authorData.authors);
+    new Home(this.songs, this.authors);
   },
 
   initDiscovery: function(){
-    new Discovery(this.songData.songs, this.authorData.authors);
+    new Discovery(this.songs, this.authors);
+  },
+
+  initSearch: function(){
+    new Search(this.songs, this.authors);
   },
 
   init: function(){

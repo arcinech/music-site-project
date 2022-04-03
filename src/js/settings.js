@@ -38,8 +38,10 @@ export const select = {
     subtitle: '.splash-subtitle',
   },
   search: {
-    input: 'input',
+    input: 'input[name="search-bar"]',
     searchButton: '.btn-search',
+    initPlugin: '.search-page .player',
+    message: '.search-message',
   }
 
 };
@@ -50,7 +52,7 @@ export const classNames = {
     active: 'active',
   },
 };
-console.log(document.querySelector(select.templateOf.homePage).innerHTML);
+
 export const templates = {
   homePage: Handlebars.compile(document.querySelector(select.templateOf.homePage).innerHTML),
   searchPage: Handlebars.compile(document.querySelector(select.templateOf.searchPage).innerHTML),
