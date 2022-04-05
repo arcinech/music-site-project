@@ -15,14 +15,17 @@
 
 body{
   font-family: $font-text;
+  font-size: 20px;
+  letter-spacing: 0.075em;
   color: $color-light;
+  background-color: $color-dark;
   padding: 0;
   margin: 0;
-  background-color: $color-dark;
+
 }
 
 .container {
-  max-width: 1040px;
+  max-width: 1596px;
   text-align: center;
   margin: auto;
 }
