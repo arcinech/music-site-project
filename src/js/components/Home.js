@@ -7,7 +7,7 @@ class Home{
   constructor(songs, authors) {
     this.songs = songs;
     this.authors = authors;
-    console.log(authors);
+
     this.renderHome();
     this.getElements();
     this.renderSongs();
@@ -18,22 +18,21 @@ class Home{
   renderHome(){
     this.dom = {};
     this.dom.wrapper = document.querySelector(select.containerOf.homePage);
-    console.log(this.dom.wrapper);
+    // console.log(this.dom.wrapper);
     const generetedHTML = templates.homePage();
-    console.log(generetedHTML);
+    // console.log(generetedHTML);
     this.dom.wrapper.innerHTML = generetedHTML;
-    console.log(this.dom.wrapper.innerHTML);
+    // console.log(this.dom.wrapper.innerHTML);
   }
 
   getElements(){
-    this.dom.homeSongs = this.dom.wrapper.querySelector(select.home.song);
     this.dom.songWrapper = this.dom.wrapper.querySelector(select.all.songsWrapper);
   }
 
   renderSongs(){
     for(let song of this.songs){
 
-      this.data = utils.songData(song, this.authors);
+      this.data = utils.songParams(song, this.authors);
 
       new Songs(this.data, this.dom.songWrapper);
     }

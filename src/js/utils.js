@@ -1,15 +1,15 @@
 export const utils = {};
 
 
-// utils.findAuthor = function(song, authors){
-//   //return author name based on author id in songs database
-//   return authors.find(element => element.id == song.authorId).name;
-// };
+utils.findAuthor = function(song, authors){
+  //return author name based on author id in songs database
+  return authors.find(element => element.id == song.authorId).name;
+};
 
-utils.songParams = function(song){
+utils.songParams = function(song, authors){
   const params = {};
   params.title = song.title;
-  params.author = song.author.name;
+  params.author = utils.findAuthor(song, authors);
   params.filename = song.filename;
   params.categories = song.categories.join(', ');
   params.ranking = song.ranking;
