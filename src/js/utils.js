@@ -45,3 +45,7 @@ utils.printMessage = function(msg, element){
 utils.clearInnerHTML= function(element){
   element.innerHTML = '';
 };
+
+utils.firstLetterUpperCase = function(string){
+  return string.charAt(0).toUpperCase() + string.slice(1);
+};
