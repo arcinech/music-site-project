@@ -41,7 +41,7 @@
   </footer>
 
   <script id="template-music-player" type="text/x-handlebars-template">
-    <div class="player-box">
+    <div class="player-box {{#each categoriesClass}} {{{this}}} {{/each}} ">
       <h3>{{ author }} - {{ title }}</h3>
       <div class="player">
         <audio>
@@ -58,8 +58,8 @@
       </div>
     </div>
   </script>
-
   <script id="template-home-page" type="text/x-handlebars-template">
+    <div id="categories-filter" class="categories-filter"></div>
     <div id="home-song" class="songs"></div>
     <div class="subscribe">
       <h2>Subscrive <span>Now</span></h2>
@@ -69,6 +69,17 @@
 
       </div>
     </div>
+  </script>
+
+  <script id="template-categories-filter" type="text/x-handlebars-template">
+    <nav class="categories">
+      <div class="filter-title">Categories: </div>
+      <ul class="filter-list">
+        {{#each this}}
+        <li><a id="{{{this}}}" href="#{{{this}}}">{{{this}}}{{#unless @last}},{{/unless}}</a></li>
+        {{/each}}
+      </ul>
+    </nav>
   </script>
 
   <script id="template-discover-page" type="text/x-handlebars-template">

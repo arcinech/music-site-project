@@ -11,6 +11,7 @@ utils.songParams = function(song, authors){
   params.title = song.title;
   params.author = utils.findAuthor(song, authors);
   params.filename = song.filename;
+  params.categoriesClass = [...song.categories].map(element => element.toLowerCase());
   params.categories = song.categories.join(', ');
   params.ranking = song.ranking;
 

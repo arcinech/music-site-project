@@ -12,12 +12,14 @@ export const select = {
     discoverPage: '#template-discover-page',
     musicPlayer: '#template-music-player',
     searchPage: '#template-search-page',
+    categoriesFilter: '#template-categories-filter',
   },
   containerOf: {
     pages: '#pages',
     homePage: '.home-page',
     search: '.search-page',
-    discovery: '.discover'
+    discovery: '.discover',
+    homeCategories: '.home-page .categories-filter'
   },
   all: {
     songsWrapper: '.songs',
@@ -28,7 +30,8 @@ export const select = {
   home: {
     songs: '#home-song',
     button: '.btn-home',
-    initPlugin: '.home-page .player'
+    initPlugin: '.home-page .player',
+    filterLinks: '.filter-list a'
   },
   discovery: {
     initPlugin: '.discover .player'
@@ -55,6 +58,7 @@ export const classNames = {
 
 export const templates = {
   homePage: Handlebars.compile(document.querySelector(select.templateOf.homePage).innerHTML),
+  categoryFilter: Handlebars.compile(document.querySelector(select.templateOf.categoriesFilter).innerHTML),
   searchPage: Handlebars.compile(document.querySelector(select.templateOf.searchPage).innerHTML),
   discoveryPage: Handlebars.compile(document.querySelector(select.templateOf.discoverPage).innerHTML),
   musicPlayer: Handlebars.compile(document.querySelector(select.templateOf.musicPlayer).innerHTML),
