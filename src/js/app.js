@@ -2,6 +2,7 @@ import { settings, select, classNames } from './settings.js';
 import Home from './components/home.js';
 import Discovery from './components/Discovery.js';
 import Search from './components/Search.js';
+import { utils } from './utils.js';
 
 const app = {
   initPages: function(){
@@ -99,12 +100,32 @@ const app = {
     new Search(this.songs, this.authors);
   },
 
+  initCouter: function(){
+    const thisApp = this;
+    thisApp.categoriesCounter = {};
+
+    document.addEventListener('play', function(event){
+      let categoryPlayed = [...event.target.closest('.player-box').classList].slice(1);
+      for (let category of categoryPlayed){
+        category = utils.firstLetterUpperCase(category);
+        console.log(category);
+        if(!thisApp.categoriesCounter[category]){
+          thisApp.categoriesCounter[category] = 1;
+        } else {
+          thisApp.categoriesCounter[category] += 1;
+        }
+
+      }
+      console.log(thisApp.categoriesCounter);
+    }, true);
+  },
+
   init: function(){
     const thisApp = this;
 
     thisApp.initData();
     thisApp.initPages();
-
+    thisApp.initCouter();
   }
 };
 
