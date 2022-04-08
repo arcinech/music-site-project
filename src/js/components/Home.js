@@ -1,4 +1,4 @@
-import { select, templates } from '../settings.js';
+import { select, templates, classNames } from '../settings.js';
 import AudioPlugin from './AudioPlugin.js';
 import Songs from './Songs.js';
 import { utils } from '../utils.js';
@@ -12,7 +12,6 @@ class Home{
     this.getElements();
     this.renderSongs(this.songs);
     this.categoryFilterParam(this.songs);
-    new AudioPlugin(select.home.initPlugin);
     this.initAction();
   }
 
@@ -33,14 +32,14 @@ class Home{
   }
 
   renderSongs(data){
-
+    this.dom.songWrapper.innerHTML = '';
     for(let song of data){
       this.data = utils.songParams(song, this.authors);
       console.log(this.data);
 
       new Songs(this.data, this.dom.songWrapper);
     }
-
+    new AudioPlugin(select.home.initPlugin);
   }
 
   categoryFilterParam(songs){
@@ -62,21 +61,49 @@ class Home{
   }
 
   initAction(){
+    const thisHome = this;
     for (const category of this.dom.categories){
       category.addEventListener('click', function(event){
         event.preventDefault();
-        const thisClick = this;
-        //stop all green audio players
+        const thisClick = event.target;
+        console.log(thisClick);
+        //stop all green audio players using GreenAudioPlayer method
         // eslint-disable-next-line no-undef
         GreenAudioPlayer.stopOtherPlayers();
-        // const category = this.getAttribute('href').replace('#','').toLowerCase();
-        // if(this.classList.include(className.)){
-        //   ;
-        // }
+        const category = thisClick.getAttribute(select.all.href).replace('#','');
+        if(thisClick.classList.contains(classNames.home.filterSelected)){
+          thisClick.classList.remove(classNames.home.filterSelected);
+          thisHome.renderSongs(thisHome.songs);
+        } else {
+          for(const links of thisHome.dom.categories){
+            links.classList.remove(classNames.home.filterSelected);
+          }
+          thisClick.classList.add(classNames.home.filterSelected);
+          console.log(thisClick);
+          console.log(thisHome.filterSongs(category));
+          thisHome.renderSongs(thisHome.filterSongs(category));
+        }
 
       });
     }
+
+    
+  }
+
+  filterSongs(filter){
+    let songList = [];
+    const normalizedFilter = utils.firstLetterUpperCase(filter);
+    for(let song of this.songs){
+      console.log(filter, song.categories.includes(normalizedFilter));
+      if(song.categories.includes(normalizedFilter)){
+        songList.push(song);
+      }
+    }
+    console.log(songList);
+    return songList;
   }
 }
+
+
 
 export default Home;

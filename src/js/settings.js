@@ -23,6 +23,8 @@ export const select = {
   },
   all: {
     songsWrapper: '.songs',
+    href: 'href',
+    audio: 'audio',
   },
   nav: {
     links: '.main-nav a',
@@ -54,6 +56,9 @@ export const classNames = {
   pages: {
     active: 'active',
   },
+  home: {
+    filterSelected: '.selected'
+  }
 };
 
 export const templates = {
