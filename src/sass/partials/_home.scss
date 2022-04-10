@@ -1,9 +1,59 @@
 nav.categories {
   display: inline-flex;
+  text-align: center;
+}
+
+.filter-title {
+  align-self: center;
 }
 
 .filter-list {
   list-style-type: none;
   display: flex;
   flex-direction: row;
+}
+
+.filter-list a.selected{
+  font-weight: $font-bold;
+  color: $color-main;
+}
+
+.subscribe {
+  background: url(../images/subscribe.jpg) center no-repeat;
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  background-size: cover;
+  padding: 50px 0;
+}
+
+.subscribe > h2 {
+  @include center();
+  top: 0;
+  margin: 0;
+}
+
+.home-page .songs {
+  margin: 50px 0;
+}
+
+.subscribe-image {
+  @include center();
+  left: 70%;
+  max-width: 465px;
+}
+
+.subscribe-home {
+  @include center();
+  left: 57.5%;
+  z-index: 10;
+  margin: 0;
+  span {
+    color: $color-main;
+  }
+  display: flex;
+  flex-direction: column;
+  &:first-child {
+    justify-content: flex-start;
+  }
 }

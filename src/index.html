@@ -26,7 +26,7 @@
   </nav>
   <div id="pages">
     <section id="home">
-      <div id="home-page" class="home-page container"></div>
+      <div id="home-page" class="home-page"></div>
     </section>
     <section id="search">
       <div id="search-page" class="search-page container"></div>
@@ -58,15 +58,21 @@
       </div>
     </div>
   </script>
+
   <script id="template-home-page" type="text/x-handlebars-template">
-    <div id="categories-filter" class="categories-filter"></div>
+    <div id="categories-filter" class="categories-filter container"></div>
     <div id="home-song" class="songs"></div>
     <div class="subscribe">
-      <h2>Subscrive <span>Now</span></h2>
+      <h2>Subscribe <span>Now</span></h2>
       <div class="subscribe-inner">
         <div class="btn btn-join">Join Now</div>
-        <h2 class="subscribe-home">Dean Hen<span>son</span></h2>
-
+        <div class="subscribe-home">
+          <h2>Dean</h2>
+          <h2>Hen<span>son</span></h2>
+        </div>
+        <div class="subscibe-image">
+          <img class="subscribe-image" src="images/artist.jpg" alt="Dean Hen" />
+        </div>
       </div>
     </div>
   </script>
@@ -76,7 +82,7 @@
       <div class="filter-title">Categories: </div>
       <ul class="filter-list">
         {{#each this}}
-        <li><a id="{{{this}}}" class="" href="#{{{this}}}">{{{this}}}{{#unless @last}},{{/unless}}</a></li>
+        <li><a class="" href="#{{{this}}}">{{{this}}}</a>{{#unless @last}},{{/unless}}</li>
         {{/each}}
       </ul>
     </nav>
@@ -93,6 +99,13 @@
       <div class="search-bar">
         <div class="search-name">Name</div>
         <input type="search" name="search-bar">
+        <div class="search-select">Category</div>
+        <select>
+          <option value=""></option>
+          {{#each this}}
+          <option value="{{ @key }}">{{{ this.label }}}</option>
+          {{/each}}
+        </select>
         <button class="btn btn-search">Search</button>
       </div>
     </div>
