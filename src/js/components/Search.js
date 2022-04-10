@@ -4,11 +4,12 @@ import {select, settings, templates} from '../settings.js';
 import { utils } from '../utils.js';
 import Songs from './Songs.js';
 import AudioPlugin from './AudioPlugin.js';
+import Home from './Home.js';
 class Search{
   constructor(songs, authors) {
     this.songs = songs;
     this.authors = authors;
-    // console.log(this.data);
+
     this.renderSearch();
     this.getElements();
     this.initAction();
@@ -20,35 +21,52 @@ class Search{
     this.dom.searchButton = this.dom.wrapper.querySelector(select.search.searchButton);
     this.dom.searchInput = this.dom.wrapper.querySelector(select.search.input);
     this.dom.searchMessage = this.dom.wrapper.querySelector(select.search.message);
-    console.log(this.dom.searchMessage);
+    this.dom.select = this.dom.wrapper.querySelector('select');
+
   }
 
   renderSearch(){
     this.dom = {};
     this.dom.wrapper = document.querySelector(select.containerOf.search);
-    // console.log(this.dom.wrapper);
-    const generetedHTML = templates.searchPage();
-    // console.log(generetedHTML);
+    //
+    const options={};
+    for(let category of this.categoryList()){
+
+      options[category] = {};
+      options[category].label = category;
+    }
+
+    const generetedHTML = templates.searchPage(options);
+    //
     this.dom.wrapper.innerHTML = generetedHTML;
-    // console.log(this.dom.wrapper.innerHTML);
+    //
   }
 
+  searchMessage(count){
+    console.log(count);
+    if (count > 1 ){
+      utils.printMessage(`We found ${count} songs...`, this.dom.searchMessage);
+    } else if( count > 0) {
+      utils.printMessage('We found 1 song...', this.dom.searchMessage);
+    } else {
+      utils.printMessage('We did no find any songs', this.dom.searchMessage);
+    }
+  }
   initAction(){
     const thisSearch = this;
+    //press search button when pressing enter
+    this.dom.searchInput.addEventListener('keypress', function(event) {
+      if (event.which === 13) {
+        event.preventDefault();
+        thisSearch.dom.searchButton.click();
+      }
+    });
+
     this.dom.searchButton.addEventListener('click', function(event){
       event.preventDefault();
-      utils.clearInnerHTML(thisSearch.dom.songWrapper);
-      utils.clearInnerHTML(thisSearch.dom.searchMessage);
       const search = thisSearch.dom.searchInput.value;
       console.log(search);
-      if(search){
-        utils.printMessage('We found this songs...', thisSearch.dom.searchMessage);
-        thisSearch.getData(search);
-      } else {
-        utils.printMessage('We did no find any songs', thisSearch.dom.searchMessage);
-      }
-
-
+      thisSearch.initSearch(search);
       utils.clearInnerHTML(thisSearch.dom.searchInput);
     });
 
@@ -58,54 +76,69 @@ class Search{
         utils.clearInnerHTML(thisSearch.dom.searchMessage);
       }
     });
+
+  }
+  filterSongs(filter){
+    let songList = [];
+    for(let song of this.songs){
+      if(song.categories.includes(filter)){
+        songList.push(song);
+      }
+    }
+    return songList;
   }
 
-  getData(searchText){
-    const thisSearch = this;
-    thisSearch.filteredData = [];
 
-    const urls = {
-      songs   : settings.db.url + '/' + settings.db.songs + '?title_like=' + searchText,
-      authors : settings.db.url + '/' + settings.db.authors + '?name_like=' + searchText,
-    };
+  initSearch(searchText){
+    const thisSearch =  this;
 
-    Promise.all([
-      fetch(urls.songs),
-      fetch(urls.authors)
-    ])
-      .then(function(allResponses){
-        const matchingSongsTitles = allResponses[0];
-        const matchingAuthorsNames = allResponses[1];
-        return Promise.all([
-          matchingSongsTitles.json(),
-          matchingAuthorsNames.json(),
-        ]);})
-      .then(function([matchingSongs, matchingAuthors]){
+    const selectedCategory = this.dom.select.value;
+    let songList = [];
 
-        let songsByAuthor = [];
-        // loop for return list of songs that have found author
-        for(let checkAuthor of matchingAuthors) {
-          const filter = thisSearch.songs.filter((song) => {
-            console.log(song);
-            return song.authorId == checkAuthor.id;
-          });
-          filter.forEach(object => {
-            songsByAuthor.push(object);
-          });
+    if (selectedCategory){
+      songList = utils.filterSongs(selectedCategory, thisSearch.songs);
+    } else songList = thisSearch.songs;
+
+    songList = this.filterSongByString(searchText, songList);
+
+    this.searchMessage(songList.length);
+    thisSearch.renderSongs(songList);
+  }
+
+  filterSongByString(searchText, songList){
+    let filterByAutor = [];
+    let filterByTitle = [];
+    if (searchText){
+      for(let song of songList){
+        if(song.author.name.toUpperCase().includes(searchText.toUpperCase())){
+          filterByAutor.push(song);
         }
-        return utils.combineArrays(matchingSongs,songsByAuthor);
-      })
-      .then(function(songList){
-        console.log(songList);
-        thisSearch.renderSongs(songList);
-      });
+        if(song.title.toUpperCase().includes(searchText.toUpperCase())){
+          filterByTitle.push(song);
+        }
+      }
+      return utils.combineArrays(filterByAutor,filterByTitle);
+    }
+    return songList;
+  }
+
+  categoryList() {
+    const categoryList = [];
+    for(let song of this.songs){
+      song.categories.map(element => categoryList.push(element));
+    }
+
+    return categoryList;
   }
 
   renderSongs(songList){
+    utils.clearInnerHTML(this.dom.songWrapper);
+    utils.clearInnerHTML(this.dom.searchMessage);
 
     for(let song of songList){
       this.data = {};
-      this.data = utils.songParams(song, this.authors);
+      this.data = utils.songParams(song);
+
 
       new Songs(this.data, this.dom.songWrapper);
     }
