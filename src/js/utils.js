@@ -1,15 +1,9 @@
 export const utils = {};
 
-
-utils.findAuthor = function(song, authors){
-  //return author name based on author id in songs database
-  return authors.find(element => element.id == song.authorId).name;
-};
-
-utils.songParams = function(song, authors){
+utils.songParams = function(song){
   const params = {};
   params.title = song.title;
-  params.author = utils.findAuthor(song, authors);
+  params.author = song.author.name;
   params.filename = song.filename;
   params.categoriesClass = [...song.categories].map(element => element.toLowerCase());
   params.categories = song.categories.join(', ');
@@ -19,7 +13,7 @@ utils.songParams = function(song, authors){
 };
 
 utils.combineArrays = function(arrayOne, arrayTwo){
-  console.log(arrayOne, arrayTwo);
+
   let array = [...arrayOne, ...arrayTwo];
 
   //double loop for finding all duplicates of objects based on id
@@ -31,7 +25,7 @@ utils.combineArrays = function(arrayOne, arrayTwo){
       }
     }
   }
-  console.log(array);
+
   return array;
 };
 
@@ -49,3 +43,14 @@ utils.clearInnerHTML= function(element){
 utils.firstLetterUpperCase = function(string){
   return string.charAt(0).toUpperCase() + string.slice(1);
 };
+
+utils.filterSongs = function(filter, songs){
+  let songList = [];
+  for(let song of songs){
+    if(song.categories.includes(filter)){
+      songList.push(song);
+    }
+  }
+  return songList;
+};
+
