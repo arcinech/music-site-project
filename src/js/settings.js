@@ -25,6 +25,7 @@ export const select = {
     songsWrapper: '.songs',
     href: 'href',
     audio: 'audio',
+    input: 'input, select',
   },
   nav: {
     links: '.main-nav a',
@@ -57,7 +58,7 @@ export const classNames = {
     active: 'active',
   },
   home: {
-    filterSelected: '.selected'
+    filterSelected: 'selected'
   }
 };
 
@@ -68,3 +69,5 @@ export const templates = {
   discoveryPage: Handlebars.compile(document.querySelector(select.templateOf.discoverPage).innerHTML),
   musicPlayer: Handlebars.compile(document.querySelector(select.templateOf.musicPlayer).innerHTML),
 };
+
+export let counter = {};
