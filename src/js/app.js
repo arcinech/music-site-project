@@ -1,4 +1,4 @@
-import { settings, select, classNames } from './settings.js';
+import { settings, select, classNames, counter } from './settings.js';
 import Home from './components/home.js';
 import Discovery from './components/Discovery.js';
 import Search from './components/Search.js';
@@ -12,7 +12,7 @@ const app = {
     thisApp.navLinks = document.querySelectorAll(select.nav.links);
 
     const idFromHash = window.location.hash.replace('#/', '');
-    // console.log(idFromHash);
+    //
 
     let pageMatchingHash = thisApp.pages[0].id;
 
@@ -44,7 +44,7 @@ const app = {
     thisApp.authorData = {};
 
     const urls = {
-      songs:    settings.db.url + '/' + settings.db.songs,
+      songs:    settings.db.url + '/' + settings.db.songs + '?_expand=author',
       authors:  settings.db.url + '/' + settings.db.authors
     };
 
@@ -93,7 +93,7 @@ const app = {
   },
 
   initDiscovery: function(){
-    new Discovery(this.songs, this.authors);
+    new Discovery(this.songs);
   },
 
   initSearch: function(){
@@ -101,22 +101,18 @@ const app = {
   },
 
   initCouter: function(){
-    const thisApp = this;
-    thisApp.categoriesCounter = {};
 
     document.addEventListener('play', function(event){
+
       let categoryPlayed = [...event.target.closest('.player-box').classList].slice(1);
       for (let category of categoryPlayed){
         category = utils.firstLetterUpperCase(category);
-        console.log(category);
-        if(!thisApp.categoriesCounter[category]){
-          thisApp.categoriesCounter[category] = 1;
+        if(!counter[category]){
+          counter[category] = 1;
         } else {
-          thisApp.categoriesCounter[category] += 1;
+          counter[category] += 1;
         }
-
       }
-      console.log(thisApp.categoriesCounter);
     }, true);
   },
 
