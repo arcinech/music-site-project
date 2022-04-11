@@ -30,10 +30,11 @@ utils.combineArrays = function(arrayOne, arrayTwo){
 };
 
 utils.printMessage = function(msg, element){
+  console.log(msg,  element);
   let div = document.createElement('div');
-  div.innerHTML = msg;
-  console.log(element);
+  div.textContent = msg;
   element.appendChild(div);
+  console.log(div);
 };
 
 utils.clearInnerHTML= function(element){

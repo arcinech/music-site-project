@@ -43,14 +43,10 @@ class Search{
   }
 
   searchMessage(count){
-    console.log(count);
-    if (count > 1 ){
-      utils.printMessage(`We found ${count} songs...`, this.dom.searchMessage);
-    } else if( count > 0) {
-      utils.printMessage('We found 1 song...', this.dom.searchMessage);
-    } else {
-      utils.printMessage('We did no find any songs', this.dom.searchMessage);
-    }
+    const thisSearch = this;
+    console.log('count', thisSearch.dom.searchMessage);
+    utils.printMessage(`We found ${count} songs...`, thisSearch.dom.searchMessage);
+
   }
   initAction(){
     const thisSearch = this;
@@ -65,7 +61,8 @@ class Search{
     this.dom.searchButton.addEventListener('click', function(event){
       event.preventDefault();
       const search = thisSearch.dom.searchInput.value;
-      console.log(search);
+
+      utils.clearInnerHTML(thisSearch.dom.searchMessage);
       thisSearch.initSearch(search);
       utils.clearInnerHTML(thisSearch.dom.searchInput);
     });
@@ -133,7 +130,6 @@ class Search{
 
   renderSongs(songList){
     utils.clearInnerHTML(this.dom.songWrapper);
-    utils.clearInnerHTML(this.dom.searchMessage);
 
     for(let song of songList){
       this.data = {};
