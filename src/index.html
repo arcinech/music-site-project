@@ -19,7 +19,6 @@
     </div>
   </header>
   <nav class="main-nav container">
-    <div name="placeholder"></div>
     <a href="#home">HOME</a>
     <a href="#search">SEARCH</a>
     <a href="#discover">DISCOVER</a>
@@ -65,13 +64,15 @@
     <div class="subscribe">
       <h2>Subscribe <span>Now</span></h2>
       <div class="subscribe-inner">
-        <div class="btn btn-join">Join Now</div>
+        <a class="btn btn-join" href="#join-now">Join Now</a>
         <div class="subscribe-home">
           <h2>Dean</h2>
           <h2>Hen<span>son</span></h2>
         </div>
-        <div class="subscibe-image">
+        <div class="subscribe-album">
           <img class="subscribe-image" src="images/artist.jpg" alt="Dean Hen" />
+          <h3>new album</h3>
+          <p>New album avaible only for subscibers</p>
         </div>
       </div>
     </div>
@@ -106,8 +107,8 @@
           <option value="{{ @key }}">{{{ this.label }}}</option>
           {{/each}}
         </select>
-        <button class="btn btn-search">Search</button>
       </div>
+      <div class="btn btn-search">Search</div>
     </div>
     <div class="search-message"></div>
     <div id="search-songs" class="songs">
