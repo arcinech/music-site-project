@@ -5,12 +5,23 @@ nav.categories {
 
 .filter-title {
   align-self: center;
+  flex: 1;
 }
 
 .filter-list {
+  flex: 1;
   list-style-type: none;
   display: flex;
   flex-direction: row;
+
+  li {
+    padding: 0 4px;
+  }
+
+  a {
+    text-decoration: none;
+    color: #{$color-light};
+  }
 }
 
 .filter-list a.selected{
@@ -24,23 +35,37 @@ nav.categories {
   height: 100vh;
   position: relative;
   background-size: cover;
-  padding: 50px 0;
+  padding: 5rem 0;
+}
+
+.subscribe-inner {
+  text-decoration: none;
+  color: #{$color-light};
 }
 
 .subscribe > h2 {
   @include center();
-  top: 0;
+  top: 1rem;
   margin: 0;
+  width: max-content;
+  font-size: 10rem;
+  letter-spacing: 2rem;
+  text-transform:uppercase;
+  font-weight: #{$font-semibold};
+  span {
+    font-weight: #{$font-black};
+  }
 }
 
 .home-page .songs {
-  margin: 50px 0;
+  margin: 5rem 0;
 }
 
-.subscribe-image {
+.subscribe-album {
   @include center();
   left: 70%;
   max-width: 465px;
+  text-align: right;
 }
 
 .subscribe-home {
@@ -48,6 +73,7 @@ nav.categories {
   left: 57.5%;
   z-index: 10;
   margin: 0;
+
   span {
     color: $color-main;
   }
@@ -56,4 +82,16 @@ nav.categories {
   &:first-child {
     justify-content: flex-start;
   }
+}
+
+.btn-join {
+  @include center();
+  left: 28%;
+  top: 55%;
+  font-size: 4rem;
+  letter-spacing: 8px;
+  text-decoration: none;
+  color: #{$color-light};
+  padding: 4rem;
+
 }

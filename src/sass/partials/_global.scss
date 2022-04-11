@@ -2,6 +2,17 @@
   box-sizing: border-box;
 }
 
+html {
+  font-size: 16px;
+  font-size: 0.52vw;
+}
+
+@media  (max-width: 768px) {
+  html {
+    font-size: 16px;
+    font-size: 0.78vw;
+  }
+}
 
 #pages {
   > * {
@@ -14,18 +25,32 @@
 }
 
 body{
-  font-family: $font-text;
-  font-size: 20px;
-  letter-spacing: 0.075em;
-  color: $color-light;
-  background-color: $color-dark;
+  font-family: #{$font-text};
+  font-size: 2rem;
+  letter-spacing: 0.15rem;
+  color: #{$color-light};
+  background-color: #{$color-dark};
   padding: 0;
   margin: 0;
 
 }
 
 .container {
-  max-width: 1596px;
+  max-width: 628px;
   text-align: center;
   margin: auto;
+}
+
+.btn {
+  display: inline-block;
+  border-radius: 1rem;
+  background: #{$color-main};
+  font-weight: #{$font-bold};
+}
+
+input, select {
+  height: 59px;
+  border-radius: 10px;
+  font-family: $font-text;
+  font-size: 20px;
 }
