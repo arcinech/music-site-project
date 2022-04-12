@@ -7,11 +7,16 @@ nav {
   > a {
     text-decoration: none;
     font-weight: $font-semibold;
-    font-size: 3rem;
+    font-size: 30px;
     color: $color-extra;
 
     &.active {
       color: $color-light;
     }
+  }
+}
+@media (max-width: 767px) {
+  nav {
+    padding: 0 10px;
   }
 }

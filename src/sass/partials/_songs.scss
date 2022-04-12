@@ -1,6 +1,6 @@
 .player.green-audio-player{
   margin: auto;
-  min-width: 582px;
+  width: 582px;
 }
 
 .player-box {
@@ -32,4 +32,16 @@
   div {
     margin: auto;
   }
+}
+
+@media (max-width: 768px) {
+  .player-box {
+    width: 100%;
+  }
+
+  .player.green-audio-player{
+    max-width: 90vw;
+    margin: 0 auto;
+  }
+
 }
