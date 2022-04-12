@@ -32,7 +32,7 @@ export const select = {
   },
   home: {
     songs: '#home-song',
-    button: '.btn-home',
+    joinButton: '.btn-join',
     initPlugin: '.home-page .player',
     filterLinks: '.filter-list a'
   },

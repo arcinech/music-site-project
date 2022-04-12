@@ -29,6 +29,9 @@ class Home{
     this.dom.songWrapper = this.dom.wrapper.querySelector(select.all.songsWrapper);
     this.dom.categoriesWrapper = this.dom.wrapper.querySelector(select.home.categoriesWrapper);
     this.dom.homeCategories = this.dom.wrapper.querySelector(select.containerOf.homeCategories);
+    this.dom.joinButton = this.dom.wrapper.querySelector(select.home.joinButton);
+
+    this.dom.joinButton.textContent = this.dom.joinButton.textContent.toUpperCase();
   }
 
   renderSongs(data){

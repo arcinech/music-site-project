@@ -23,6 +23,8 @@ class Search{
     this.dom.searchMessage = this.dom.wrapper.querySelector(select.search.message);
     this.dom.select = this.dom.wrapper.querySelector('select');
 
+    this.dom.searchButton.textContent = this.dom.searchButton.textContent.toUpperCase();
+
   }
 
   renderSearch(){
@@ -45,7 +47,13 @@ class Search{
   searchMessage(count){
     const thisSearch = this;
     console.log('count', thisSearch.dom.searchMessage);
-    utils.printMessage(`We found ${count} songs...`, thisSearch.dom.searchMessage);
+    if (count > 1){
+      utils.printMessage(`We have found ${count} songs...`, thisSearch.dom.searchMessage);
+    } else if (count == 1) {
+      utils.printMessage(`We have found 1 song...`, thisSearch.dom.searchMessage);
+    } else {
+      utils.printMessage(`We haven't found any song...`, thisSearch.dom.searchMessage);
+    }
 
   }
   initAction(){
