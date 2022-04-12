@@ -50,8 +50,9 @@ nav.categories {
   width: max-content;
   font-size: 10rem;
   letter-spacing: 2rem;
-  text-transform:uppercase;
+  text-transform: uppercase;
   font-weight: #{$font-semibold};
+
   span {
     font-weight: #{$font-black};
   }
@@ -79,6 +80,7 @@ nav.categories {
   }
   display: flex;
   flex-direction: column;
+  
   &:first-child {
     justify-content: flex-start;
   }
