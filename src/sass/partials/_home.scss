@@ -67,6 +67,10 @@ nav.categories {
   left: 70%;
   max-width: 465px;
   text-align: right;
+
+  > *:not(img){
+    margin-right: -50px;
+  }
 }
 
 .subscribe-home {
@@ -75,12 +79,22 @@ nav.categories {
   z-index: 10;
   margin: 0;
 
+  h2 {
+    margin:0;
+    font-size: 100px;
+    font-weight: #{$font-black};
+
+    &:first-of-type {
+      margin-left: -50px;
+    }
+  }
+
   span {
     color: $color-main;
   }
   display: flex;
   flex-direction: column;
-  
+
   &:first-child {
     justify-content: flex-start;
   }
