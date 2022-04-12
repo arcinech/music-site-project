@@ -1,6 +1,14 @@
-nav.categories {
+.categories-nav {
   display: inline-flex;
   text-align: center;
+}
+.categories-filter {
+  max-width: fit-content;
+  margin: auto;
+}
+
+.player-subtext {
+  color: #{$color-extra};
 }
 
 .filter-title {
@@ -13,6 +21,9 @@ nav.categories {
   list-style-type: none;
   display: flex;
   flex-direction: row;
+  color: #{$color-extra};
+  padding-right: auto;
+  padding-left: 5px;
 
   li {
     padding: 0 4px;
