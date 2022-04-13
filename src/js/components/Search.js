@@ -1,10 +1,10 @@
 /* eslint-disable no-unused-vars */
 
-import {select, settings, templates} from '../settings.js';
+import {select, templates} from '../settings.js';
 import { utils } from '../utils.js';
-import Songs from './Songs.js';
+import Song from './Songs.js';
 import AudioPlugin from './AudioPlugin.js';
-import Home from './Home.js';
+
 class Search{
   constructor(songs, authors) {
     this.songs = songs;
@@ -144,7 +144,7 @@ class Search{
       this.data = utils.songParams(song);
 
 
-      new Songs(this.data, this.dom.songWrapper);
+      new Song(this.data, this.dom.songWrapper);
     }
 
     new AudioPlugin(select.search.initPlugin);

@@ -1,10 +1,12 @@
-import { settings, select, classNames, counter } from './settings.js';
+import { settings, select, classNames } from './settings.js';
+import { utils } from './utils.js';
 import Home from './components/home.js';
 import Discovery from './components/Discovery.js';
 import Search from './components/Search.js';
-import { utils } from './utils.js';
+import CategoryAnalysis from './components/CategoryAnalysis.js'
 
 const app = {
+
   initPages: function(){
     const thisApp = this;
 
@@ -95,7 +97,7 @@ const app = {
   },
 
   initDiscovery: function(){
-    new Discovery(this.songs);
+    this.discovery = new Discovery(this.songs);
   },
 
   initSearch: function(){
@@ -104,9 +106,10 @@ const app = {
 
   initCouter: function(){
 
-    document.addEventListener('play', function(event){
+    let counter = {};
+    document.addEventListener('play', (event) => {
 
-      let categoryPlayed = [...event.target.closest('.player-box').classList].slice(1);
+      const categoryPlayed = event.target.closest('.player-box').getAttribute('data-bind').split(' ');
       for (let category of categoryPlayed){
         category = utils.firstLetterUpperCase(category);
         if(!counter[category]){
@@ -115,6 +118,8 @@ const app = {
           counter[category] += 1;
         }
       }
+      const categoryResult = new CategoryAnalysis(counter);
+      console.log(app.discovery);
     }, true);
   },
 

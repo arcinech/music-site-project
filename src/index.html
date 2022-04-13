@@ -40,7 +40,7 @@
   </footer>
 
   <script id="template-music-player" type="text/x-handlebars-template">
-    <div class="player-box {{#each categoriesClass}} {{{this}}} {{/each}} ">
+    <div class="player-box" data-bind="{{#each categoriesClass}}{{{this}}}{{#unless @last}} {{/unless}}{{/each}}">
       <h3>{{ author }} - {{ title }}</h3>
       <div class="player">
         <audio>
@@ -95,7 +95,7 @@
     <div id="random-song" class="songs"></div>
   </script>
   <script id="template-search-page" type="text/x-handlebars-template">
-    <div class="search-options">
+    <form class="search-options">
       <h3 class="search-title">SEARCH</h3>
       <div class="search-bar">
         <div class="search-name">Name</div>
@@ -108,8 +108,8 @@
           {{/each}}
         </select>
       </div>
-      <div class="btn btn-search">Search</div>
-    </div>
+      <button type="submit" class="btn btn-search">Search</button>
+    </form>
     <div class="search-message"></div>
     <div id="search-songs" class="songs">
 

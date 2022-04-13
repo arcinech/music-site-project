@@ -1,6 +1,6 @@
 import { select, templates, classNames } from '../settings.js';
 import AudioPlugin from './AudioPlugin.js';
-import Songs from './Songs.js';
+import Song from './Songs.js';
 import { utils } from '../utils.js';
 
 class Home{
@@ -40,7 +40,7 @@ class Home{
       this.data = utils.songParams(song);
 
 
-      new Songs(this.data, this.dom.songWrapper);
+      new Song(this.data, this.dom.songWrapper);
     }
     new AudioPlugin(select.home.initPlugin);
   }

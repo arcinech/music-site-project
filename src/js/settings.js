@@ -69,5 +69,3 @@ export const templates = {
   discoveryPage: Handlebars.compile(document.querySelector(select.templateOf.discoverPage).innerHTML),
   musicPlayer: Handlebars.compile(document.querySelector(select.templateOf.musicPlayer).innerHTML),
 };
-
-export let counter = {};

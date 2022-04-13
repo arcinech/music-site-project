@@ -1,6 +1,6 @@
 import { templates } from '../settings.js';
 
-class Songs{
+class Song {
   constructor(data, element) {
     this.data = data;
     this.renderSong(element);
@@ -15,4 +15,4 @@ class Songs{
 
 }
 
-export default Songs;
+export default Song;
