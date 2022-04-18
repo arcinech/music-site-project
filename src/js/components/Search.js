@@ -58,13 +58,6 @@ class Search{
   }
   initAction(){
     const thisSearch = this;
-    //press search button when pressing enter
-    this.dom.searchInput.addEventListener('keypress', function(event) {
-      if (event.which === 13) {
-        event.preventDefault();
-        thisSearch.dom.searchButton.click();
-      }
-    });
 
     this.dom.searchButton.addEventListener('click', function(event){
       event.preventDefault();
