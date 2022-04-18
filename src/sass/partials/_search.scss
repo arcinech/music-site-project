@@ -7,7 +7,9 @@
   letter-spacing: 4px;
   padding: 10px 20px;
   max-width: 139px;
-  margin: auto;
+  margin: 30px auto;
+  cursor: pointer;
+
 }
 
 .search-options {
@@ -23,6 +25,10 @@
   font-weight: #{$font-semibold};
   color: #{$color-extra};
   margin: auto;
+
+  > div {
+    margin: 0 20px;
+  }
 }
 
 .search-title {
