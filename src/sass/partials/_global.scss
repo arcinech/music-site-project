@@ -46,6 +46,8 @@ body{
   border-radius: 1rem;
   background: #{$color-main};
   font-weight: #{$font-bold};
+  color: #{$color-light};
+  border-width: 0;
 }
 
 input, select {

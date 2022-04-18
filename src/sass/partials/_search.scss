@@ -9,6 +9,7 @@
   max-width: 139px;
   margin: 30px auto;
   cursor: pointer;
+  height: 59px;
 
 }
 
@@ -20,7 +21,7 @@
 }
 
 .search-bar {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   font-weight: #{$font-semibold};
   color: #{$color-extra};
@@ -44,13 +45,17 @@
 }
 
 
-input[name="search-bar"] {
-  max-width: 335px;
-}
 
+input[name="search-bar"],
 select {
   width: 335px;
   font-family: inherit;
   font-weight: #{$font-semibold};
-  color: #{$color-extra};
+}
+
+@media screen  and (max-width: 959.9999px){
+  .search-bar {
+    flex-direction: column;
+    gap: 12px;
+  }
 }

@@ -1,6 +1,5 @@
 .player.green-audio-player{
   margin: auto;
-  width: 582px;
 }
 
 .player-box {
@@ -25,7 +24,7 @@
 }
 
 .player-subtext {
-  display: inline-flex;
+  display: flex;
   justify-content: space-between;
   min-width: 582px;
 
@@ -34,14 +33,24 @@
   }
 }
 
-@media (max-width: 768px) {
+@media screen and (max-width: 767.9999px) {
   .player-box {
     width: 100%;
   }
 
   .player.green-audio-player{
-    max-width: 90vw;
+    max-width: 100%;
     margin: 0 auto;
+  }
+
+  .player-subtext {
+    min-width: 300px;
+    flex-direction: column;
+    width: 100%;
+
+    > div {
+      margin: 0 auto;
+    }
   }
 
 }
