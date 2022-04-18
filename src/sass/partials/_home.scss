@@ -125,15 +125,15 @@
 
 }
 
-
 @media (max-width: 767.999px) {
-
   .subscribe {
     margin-top: 30px;
+
     >h2 {
       font-size: 30px;
     }
   }
+
   .categories-nav {
     padding-top: 20px;
     flex-direction: column;
@@ -144,6 +144,7 @@
     gap: 10px;
     justify-content: center;
   }
+
   .subscribe-home h2 {
     font-size: 50px;
   }
@@ -160,10 +161,9 @@
       height: 100%;
     }
 
-    > *:not(img) {
+    >*:not(img) {
       margin: 0;
     }
-
   }
 
   .btn-join {
@@ -171,7 +171,4 @@
     top: 15%;
     z-index: 20;
   }
-
-
-
 }
