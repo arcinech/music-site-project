@@ -2,7 +2,7 @@
 
 import {select, templates} from '../settings.js';
 import { utils } from '../utils.js';
-import Song from './Songs.js';
+import Song from './Song.js';
 import AudioPlugin from './AudioPlugin.js';
 
 class Search{

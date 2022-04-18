@@ -34,10 +34,12 @@ export const select = {
     songs: '#home-song',
     joinButton: '.btn-join',
     initPlugin: '.home-page .player',
-    filterLinks: '.filter-list a'
+    filterLinks: '.filter-list a',
+    subscribeAlbumTitle: '.subscribe-album h3'
   },
   discovery: {
-    initPlugin: '.discover .player'
+    initPlugin: '.discover .player',
+    title: '.discover-title',
   },
   splash: {
     title: '.splash-title',

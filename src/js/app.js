@@ -3,9 +3,18 @@ import { utils } from './utils.js';
 import Home from './components/home.js';
 import Discovery from './components/Discovery.js';
 import Search from './components/Search.js';
-import CategoryAnalysis from './components/CategoryAnalysis.js'
+import CategoryAnalysis from './components/CategoryAnalysis.js';
 
 const app = {
+
+  initSplash: function(){
+    this.splashTitle = document.querySelector(select.splash.title);
+    this.splashSubtitle = document.querySelector(select.splash.subtitle);
+    console.log(this.splashSubtitle, this.splashTitle);
+
+    this.splashTitle.textContent = this.splashTitle.textContent.toUpperCase();
+    this.splashSubtitle.textContent = this.splashSubtitle.textContent.toUpperCase();
+  },
 
   initPages: function(){
     const thisApp = this;
@@ -69,8 +78,8 @@ const app = {
         thisApp.authors = authors;
 
         thisApp.initHome();
-        thisApp.initDiscovery();
         thisApp.initSearch();
+        thisApp.initDiscovery();
       });
   },
 
@@ -97,7 +106,10 @@ const app = {
   },
 
   initDiscovery: function(){
-    this.discovery = new Discovery(this.songs);
+    const thisApp = this;
+
+    thisApp.random = new Discovery(this.songs);
+    thisApp.initCouter();
   },
 
   initSearch: function(){
@@ -109,8 +121,8 @@ const app = {
     let counter = {};
     document.addEventListener('play', (event) => {
 
-      const categoryPlayed = event.target.closest('.player-box').getAttribute('data-bind').split(' ');
-      for (let category of categoryPlayed){
+      const categoriesPlayed = event.target.closest('.player-box').getAttribute('data-bind').split(' ');
+      for (let category of categoriesPlayed){
         category = utils.firstLetterUpperCase(category);
         if(!counter[category]){
           counter[category] = 1;
@@ -118,17 +130,24 @@ const app = {
           counter[category] += 1;
         }
       }
-      const categoryResult = new CategoryAnalysis(counter);
-      console.log(app.discovery);
     }, true);
+
+    window.addEventListener('hashchange', function(){
+
+      if(this.location.hash == '#/discover') {
+        const analsysis = new CategoryAnalysis(counter);
+        console.log(analsysis);
+        app.random.renderRandomSong(analsysis.selectedCategory);
+      }
+    });
   },
 
   init: function(){
     const thisApp = this;
 
+    thisApp.initSplash();
     thisApp.initData();
     thisApp.initPages();
-    thisApp.initCouter();
   }
 };
 

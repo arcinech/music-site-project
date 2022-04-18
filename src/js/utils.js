@@ -17,7 +17,6 @@ utils.combineArrays = function(arrayOne, arrayTwo){
   let array = [...arrayOne, ...arrayTwo];
 
   //double loop for finding all duplicates of objects based on id
-
   for (let i = 0; i < array.length; i++){
     for(let j = i+1; j < array.length; j++){
       if(array[i].id == array[j].id){
@@ -30,7 +29,6 @@ utils.combineArrays = function(arrayOne, arrayTwo){
 };
 
 utils.printMessage = function(msg, element){
-  console.log(msg,  element);
   let div = document.createElement('div');
   div.textContent = msg;
   element.appendChild(div);
@@ -47,6 +45,8 @@ utils.firstLetterUpperCase = function(string){
 
 utils.filterSongs = function(filter, songs){
   let songList = [];
+
+  if(!filter) return songs;
   for(let song of songs){
     if(song.categories.includes(filter)){
       songList.push(song);

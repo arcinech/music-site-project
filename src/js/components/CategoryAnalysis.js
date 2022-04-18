@@ -1,26 +1,30 @@
 class CategoryAnalysis{
-  constructor(params) {
-    return {popularCategory : this.mostPopular(params)};
+  constructor(counter) {
+    return {selectedCategory: this.selectByWeight(counter)};
   }
-  mostPopular(counter){
-    const maxObj = function(obj){
-      const mappedValues = Math.max(...Object.values(obj));
-      const asArray = Object.entries(obj);
 
-      const categories = asArray.filter(([key, value]) => {
-        if(value == mappedValues){
-          return [key,value];
-        }
-      } );
+  selectByWeight(counter) {
+    let total = 0;
 
-      const category = Object.keys(Object.fromEntries(categories));
-      return category;
-    };
+    //Total amount of categories played
+    Object.values(counter).forEach(function(k) {
+      total += k;
+    });
 
-    const popular = maxObj(counter);
-    const randomPopularCategory = Math.floor(Math.random()*popular.length);
+    let weightedRandom = Math.floor(Math.random() * total);
+    let selected;
+    let count = 0;
 
-    return popular[randomPopularCategory];
+    //Select category based on weighted random distribution.
+    Object.keys(counter).forEach( k => {
+      count += counter[k];
+
+      if (count > weightedRandom && !selected) {
+        selected = k;
+      }
+    });
+
+    return selected;
   }
 
 }

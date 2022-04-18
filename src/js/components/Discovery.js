@@ -7,8 +7,8 @@ class Discovery{
 
     this.songs = songs;
     this.renderPage();
-    this.renderRandomSong();
-    this.initEvent();
+    this.renderRandomSong(analysedCategory);
+    // this.initEvent();
   }
 
   renderPage(){
@@ -19,60 +19,25 @@ class Discovery{
 
     this.dom.wrapper.innerHTML = generetedHTML;
     this.dom.song = this.dom.wrapper.querySelector(select.all.songsWrapper);
+
+    this.dom.title = this.dom.wrapper.querySelector(select.discovery.title);
+
+    this.dom.title.textContent = this.dom.title.textContent.toUpperCase();
   }
 
-  // mostPopular(counter){
-  //   const maxObj = function(obj){
-  //     const mappedValues = Math.max(...Object.values(obj));
-  //     const asArray = Object.entries(obj);
-
-  //     const categories = asArray.filter(([key, value]) => {
-  //       if(value == mappedValues){
-  //         return [key,value];
-  //       }
-  //     } );
-
-  //     const category = Object.keys(Object.fromEntries(categories));
-  //     return category;
-  //   };
-
-  //   const popular = maxObj(counter);
-  //   const randomPopularCategory = Math.floor(Math.random()*popular.length);
-
-  //   return popular[randomPopularCategory];
-  // }
-
-
-  renderRandomSong(analysedCategory){
+  renderRandomSong(analysedCategory = null){
     // remove previous random song
     console.log(analysedCategory);
     this.dom.song.innerHTML = '';
 
-    let songList = this.songs;
-    let randomSong = Math.floor(Math.random()*this.songs.length);
-
-    // randomly select song from random maximum used equal categories
-    // if (category){
-    //   songList = utils.filterSongs(category, this.songs);
-    //   randomSong = Math.floor(Math.random()*songList.length);
-    // }
+    let songList = utils.filterSongs(analysedCategory, this.songs);
+    let randomSong = Math.floor(Math.random()*songList.length);
 
     this.data = utils.songParams(songList[randomSong]);
 
     new Song(this.data, this.dom.song);
     new AudioPlugin(select.discovery.initPlugin);
   }
-
-  initEvent(){
-    const thisDiscovery = this;
-
-    // window.addEventListener('hashchange', function(){
-    //   if(this.location.hash == '#/discover') thisDiscovery.renderRandomSong();
-    // });
-
-    
-  }
-
 }
 
 export default Discovery;

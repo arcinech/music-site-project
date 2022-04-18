@@ -1,6 +1,6 @@
 import { select, templates, classNames } from '../settings.js';
 import AudioPlugin from './AudioPlugin.js';
-import Song from './Songs.js';
+import Song from './Song.js';
 import { utils } from '../utils.js';
 
 class Home{
@@ -30,8 +30,10 @@ class Home{
     this.dom.categoriesWrapper = this.dom.wrapper.querySelector(select.home.categoriesWrapper);
     this.dom.homeCategories = this.dom.wrapper.querySelector(select.containerOf.homeCategories);
     this.dom.joinButton = this.dom.wrapper.querySelector(select.home.joinButton);
+    this.dom.subscribeAlbum = this.dom.wrapper.querySelector(select.home.subscribeAlbumTitle);
 
     this.dom.joinButton.textContent = this.dom.joinButton.textContent.toUpperCase();
+    this.dom.subscribeAlbum.textContent =  this.dom.subscribeAlbum.textContent.toUpperCase();
   }
 
   renderSongs(data){
@@ -87,8 +89,6 @@ class Home{
 
       });
     }
-
-
   }
 
   filterSongs(filter){
