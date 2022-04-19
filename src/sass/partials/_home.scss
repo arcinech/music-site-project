@@ -1,0 +1,174 @@
+.categories-nav {
+  display: inline-flex;
+  text-align: center;
+}
+
+.categories-filter {
+  max-width: fit-content;
+  margin: auto;
+}
+
+.player-subtext {
+  color: #{$color-extra};
+}
+
+.filter-title {
+  align-self: center;
+  flex: 1;
+}
+
+.filter-list {
+  flex: 1;
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  color: #{$color-extra};
+  padding-right: auto;
+  padding-left: 5px;
+
+  li {
+    padding: 0 4px;
+  }
+
+  a {
+    text-decoration: none;
+    color: #{$color-light};
+  }
+}
+
+.filter-list a.selected {
+  font-weight: $font-bold;
+  color: $color-main;
+}
+
+.subscribe {
+  background: url(../images/subscribe.jpg) center no-repeat;
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  background-size: cover;
+  padding: 5rem 0;
+}
+
+.subscribe-inner {
+  text-decoration: none;
+  color: #{$color-light};
+}
+
+.subscribe>h2 {
+  @include center();
+  top: 1rem;
+  margin: 0;
+  width: max-content;
+  font-size: 10rem;
+  letter-spacing: 2rem;
+  text-transform: uppercase;
+  font-weight: #{$font-semibold};
+
+  span {
+    font-weight: #{$font-black};
+  }
+}
+
+.home-page .songs {
+  margin: 5rem 0;
+}
+
+.subscribe-album {
+  @include center();
+  left: 70%;
+  max-width: 465px;
+  text-align: right;
+
+  >*:not(img) {
+    margin-right: -5rem;
+  }
+}
+
+.subscribe-home {
+  @include center();
+  left: 57.5%;
+  z-index: 10;
+  margin: 0;
+
+  h2 {
+    margin: 0;
+    font-size: 10rem;
+    font-weight: #{$font-black};
+
+    &:first-of-type {
+      margin-left: -5rem;
+    }
+  }
+
+  span {
+    color: $color-main;
+  }
+
+  display: flex;
+  flex-direction: column;
+
+  &:first-child {
+    justify-content: flex-start;
+  }
+}
+
+.btn-join {
+  @include center();
+  left: 28%;
+  top: 55%;
+  font-size: 4rem;
+  letter-spacing: 0.8rem;
+  text-decoration: none;
+  color: #{$color-light};
+  padding: 4rem;
+
+}
+
+@media (max-width: 767.999px) {
+  .subscribe {
+    margin-top: 30px;
+
+    >h2 {
+      font-size: 30px;
+    }
+  }
+
+  .categories-nav {
+    padding-top: 20px;
+    flex-direction: column;
+  }
+
+  .filter-list {
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
+
+  .subscribe-home h2 {
+    font-size: 50px;
+  }
+
+  .subscribe-album {
+    width: 300px;
+    top: 50%;
+    left: 50%;
+
+    img {
+      position: unset;
+      object-fit: contain;
+      width: 100%;
+      height: 100%;
+    }
+
+    >*:not(img) {
+      margin: 0;
+    }
+  }
+
+  .btn-join {
+    left: 50%;
+    top: 15%;
+    z-index: 20;
+  }
+}

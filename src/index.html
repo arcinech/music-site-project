@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Music Site</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/greghub/green-audio-player/dist/css/green-audio-player.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="splash">
+    <div class="splash-inner">
+      <h1 class="splash-title">TASTE</h1>
+      <h2 class="splash-subtitle">Engage in Art</h2>
+    </div>
+  </header>
+  <nav class="main-nav container">
+    <a href="#home">Home</a>
+    <a href="#search">SEARCH</a>
+    <a href="#discover">DISCOVER</a>
+  </nav>
+  <div id="pages">
+    <section id="home">
+      <div id="home-page" class="home-page"></div>
+    </section>
+    <section id="search">
+      <div id="search-page" class="search-page container"></div>
+    </section>
+    <section id="discover">
+      <div id="discover-page" class="container discover"></div>
+    </section>
+  </div>
+  <footer class="footer container">
+    <p>All rights reserved</p>
+
+  </footer>
+
+  <script id="template-music-player" type="text/x-handlebars-template">
+    <div class="player-box" data-bind="{{#each categoriesClass}}{{{this}}}{{#unless @last}} {{/unless}}{{/each}}">
+      <h3>{{ author }} - {{ title }}</h3>
+      <div class="player">
+        <audio>
+          <source src="songs/{{{filename}}}" type="audio/mpeg">
+        </audio>
+      </div>
+      <div class="player-subtext">
+        <div class="categories">
+          <p>
+            Categories: <span>"{{ categories }}"</span>
+          </p>
+        </div>
+        <div>#{{{ranking}}} in ranking</div>
+      </div>
+    </div>
+  </script>
+
+  <script id="template-home-page" type="text/x-handlebars-template">
+    <div id="categories-filter" class="categories-filter container"></div>
+    <div id="home-song" class="songs"></div>
+    <div class="subscribe">
+      <h2>Subscribe <span>Now</span></h2>
+      <div class="subscribe-inner">
+        <a class="btn btn-join" href="#join-now">Join Now</a>
+        <div class="subscribe-home">
+          <h2>Dean</h2>
+          <h2>Hen<span>son</span></h2>
+        </div>
+        <div class="subscribe-album">
+          <img class="subscribe-image" src="images/artist.jpg" alt="Dean Hen" />
+          <h3>new album</h3>
+          <p>New album avaible only for subscibers</p>
+        </div>
+      </div>
+    </div>
+  </script>
+
+  <script id="template-categories-filter" type="text/x-handlebars-template">
+    <nav class="categories-nav">
+      <div class="filter-title">Categories: </div>
+      <ul class="filter-list">
+        {{#each this}}
+        <li><a class="" href="#{{{this}}}">{{{this}}}</a>{{#unless @last}},{{/unless}}</li>
+        {{/each}}
+      </ul>
+    </nav>
+  </script>
+
+  <script id="template-discover-page" type="text/x-handlebars-template">
+    <h3 class="discover-title">Discover</h3>
+    <p class="discover-subtitle">Give it a try!</p>
+    <div id="random-song" class="songs"></div>
+  </script>
+  <script id="template-search-page" type="text/x-handlebars-template">
+    <form class="search-options">
+      <h3 class="search-title">SEARCH</h3>
+      <div class="search-bar">
+        <div class="search-name">Name</div>
+        <input type="search" name="search-bar">
+        <div class="search-select">Category</div>
+        <select>
+          <option value=""></option>
+          {{#each this}}
+          <option value="{{ @key }}">{{{ this.label }}}</option>
+          {{/each}}
+        </select>
+      </div>
+      <button type="submit" class="btn btn-search">Search</button>
+    </form>
+    <div class="search-message"></div>
+    <div id="search-songs" class="songs">
+
+    </div>
+  </script>
+  <script src="https://cdn.jsdelivr.net/gh/greghub/green-audio-player/dist/js/green-audio-player.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.0/handlebars.min.js"></script>
+  <script src="js/app.js" type="module"></script>
+</body>
+</html>

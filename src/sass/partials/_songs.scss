@@ -1,0 +1,56 @@
+.player.green-audio-player{
+  margin: auto;
+}
+
+.player-box {
+  width: 582px;
+  margin: auto;
+
+  h3{
+    font-size: 30px;
+    font-weight: $font-semibold;
+    line-height: 27px;
+    text-align: left;
+    padding: 24.5px;
+  }
+}
+
+.green-audio-player .slider .gap-progress{
+  background-color: $color-main;
+
+  .pin {
+    background-color: $color-main;
+  }
+}
+
+.player-subtext {
+  display: flex;
+  justify-content: space-between;
+  min-width: 582px;
+
+  div {
+    margin: auto;
+  }
+}
+
+@media screen and (max-width: 767.9999px) {
+  .player-box {
+    width: 100%;
+  }
+
+  .player.green-audio-player{
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .player-subtext {
+    min-width: 300px;
+    flex-direction: column;
+    width: 100%;
+
+    > div {
+      margin: 0 auto;
+    }
+  }
+
+}
