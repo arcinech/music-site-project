@@ -1,5 +1,5 @@
 import { settings, select, classNames } from './settings.js';
-import Home from './components/home.js';
+import Home from './components/Home.js';
 import Discovery from './components/Discovery.js';
 import Search from './components/Search.js';
 
