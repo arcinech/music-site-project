@@ -58,7 +58,7 @@ class Discovery{
     }, true);
 
     window.addEventListener('hashchange', () => {
-      if(this.location.hash == '#/discover') {
+      if(window.location.hash == '#/discover') {
         this.renderRandomSong(CategoryAnalysis.prototype.selectByWeight(this.counter));
       }
     });
