@@ -35,6 +35,9 @@
 .search-title {
   font-size: 60px;
   margin: 60px 0;
+  font-weight: #{$font-semibold};
+  letter-spacing: 12px;
+  color: #{$color-extra};
 }
 
 .search-message {
