@@ -1,6 +1,6 @@
 class CategoryAnalysis{
-  constructor(counter) {
-    return {selectedCategory: this.selectByWeight(counter)};
+  constructor() {
+    return this;
   }
 
   selectByWeight(counter) {
