@@ -1,9 +1,7 @@
 import { settings, select, classNames } from './settings.js';
-import { utils } from './utils.js';
-import Home from './components/home.js';
+import Home from './components/Home.js';
 import Discovery from './components/Discovery.js';
 import Search from './components/Search.js';
-import CategoryAnalysis from './components/CategoryAnalysis.js';
 
 const app = {
 
@@ -103,43 +101,16 @@ const app = {
 
   initHome: function(){
     new Home(this.songs, this.authors);
+
   },
 
   initDiscovery: function(){
-    const thisApp = this;
+    new Discovery(this.songs);
 
-    thisApp.random = new Discovery(this.songs);
-    thisApp.initCouter();
   },
 
   initSearch: function(){
     new Search(this.songs, this.authors);
-  },
-
-  initCouter: function(){
-
-    let counter = {};
-    document.addEventListener('play', (event) => {
-
-      const categoriesPlayed = event.target.closest('.player-box').getAttribute('data-bind').split(' ');
-      for (let category of categoriesPlayed){
-        category = utils.firstLetterUpperCase(category);
-        if(!counter[category]){
-          counter[category] = 1;
-        } else {
-          counter[category] += 1;
-        }
-      }
-    }, true);
-
-    window.addEventListener('hashchange', function(){
-
-      if(this.location.hash == '#/discover') {
-        const analsysis = new CategoryAnalysis(counter);
-        console.log(analsysis);
-        app.random.renderRandomSong(analsysis.selectedCategory);
-      }
-    });
   },
 
   init: function(){
